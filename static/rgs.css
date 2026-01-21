@@ -1,0 +1,74 @@
+div{
+  border-radius: 50px;
+  background: #171923;
+  box-shadow:  20px 20px 0px #14151e,
+                 -20px -20px 0px #1a1d28;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  width: 25vw;
+  }
+  
+  h1, h2, p, h4 {
+    text-align: center;
+  }
+  label{
+    display: block;
+    text-align: center;
+  }
+  body {
+    background: #171923;
+    font-family: sans-serif;
+    padding: 20px;
+  }
+  h1, h2, h4, label {
+    
+    color: white;
+  }
+  label{
+    text-align: center;
+  }
+  input{
+    border-radius: 5px;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  button {
+    padding: 0.75em;
+    border: none;
+    outline: none;
+    background-color: white;
+    color: white;
+    border-radius: 0.25em;
+  }
+p{
+  color: white;
+}  
+
+a {
+  color: white;
+}
+
+a:visited {
+  color: white;
+}
+
+a:hover {
+  color: white;
+}
+
+a:active {
+  color: white;
+} 
+  
+.logo{
+  display: block;
+  padding-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+}
+  

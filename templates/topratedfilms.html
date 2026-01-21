@@ -1,0 +1,38 @@
+{% extends "templates/shablon.html" %}
+
+{% block content %}
+<img class="logo"src="{{url_for('static', filename='img/popcorn.png')}}" alt="logo", width="90px" height="90px">
+    
+<a href="/">
+    <h1 class="title">PopCornFilms</h1>
+</a>
+    
+    <div class="menu">
+        <hr>
+        <a href="/" class="more">
+            <button type="button" class="more">Back</button>
+        </a>
+        <h1>Top Rated</h1>
+        
+            <a href="/top_rated/next/{{response_top_films['page']}}" class="more">
+                <button type="button" class="more">Next</button>
+            </a>
+            {% if page_num >=2 %}
+                <a href="/top_rated/back/{{response_top_films['page']}}">
+                    <button type="button">Back</button>
+                </a>
+            {% endif %}
+        
+        <div class="row2">
+            {%for item in response_top_films['results']%}     
+            <a href='/info/movie/id={{item["id"]}}'>             
+                <img class="imgfilm" src='https://image.tmdb.org/t/p/original/{{item["poster_path"]}}' height="250" width="177">       
+            </a>           
+            {% endfor %}     
+        </div>
+        <hr>
+        <p class="footer"><a href="https://www.freepik.com/">Image source</a></p>
+        <p class="footer"><a href="https://developer.themoviedb.org/reference/intro/getting-started">API source</a></p>
+    </div>
+    
+{% endblock %}

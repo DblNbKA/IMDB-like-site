@@ -1,0 +1,30 @@
+{% extends "templates/shablon.html" %}
+
+{% block content %}
+<img class="logo"src="{{url_for('static', filename='img/popcorn.png')}}" alt="logo", width="90px" height="90px">
+    
+    <a href="/">
+        <h1 class="title">PopCornFilms</h1>
+    </a>
+
+<div class="menu" style="width: 60%;">
+    <hr>
+    <a href="/" class="more">
+        <button type="button" class="more">Back</button>
+    </a>
+    <div class="movinfo">
+        <img class="poster" src='https://image.tmdb.org/t/p/original/{{profile_path}}' height="552" width="368"> 
+        <div class="movtext">
+            <h1><strong>{{name}}</strong></h1>
+            {% if birthday != None%}
+                <p>Date of birth: {{birthday}} ({{place_of_birth}})</p>
+            {% endif %}
+            {% if deathday != None%}
+                <p>Date of death: {{deathday}}</p>
+            {% endif %}
+            <h3>{{biography}}</h3>
+        </div>
+    <hr>
+</div>
+
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "templates/shablon.html" %}
+
+{% block content %}
+<img class="logo"src="{{url_for('static', filename='img/popcorn.png')}}" alt="logo", width="90px" height="90px">
+    
+    <a href="/">
+        <h1 class="title">PopCornFilms</h1>
+    </a>
+    <div class="menu">
+        <hr>
+        <h1>Results for {{what}}:</h1>
+        <div class="row3">
+            {% for res in search %}
+                {% if res.poster_path != None %}
+                <div class="movinfo">
+                    <img class="poster_s" src='https://image.tmdb.org/t/p/original/{{res.poster_path}}' height="225" width="150"> 
+                    <h2><a href='/info/movie/id={{res.id}}'>{{res.title}}</a></h2>
+                </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <hr>
+    </div>
+
+
+
+{% endblock %}

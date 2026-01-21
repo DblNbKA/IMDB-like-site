@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PopCornFilms</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='static/styles.css') }}">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='img/popcorn.png') }}">
+  </head>
+  <body>
+    <img class="logo"src="{{url_for('static', filename='img/popcorn.png')}}" alt="logo", width="90px" height="90px">
+    
+    <a href="/">
+        <h1 class="title">PopCornFilms</h1>
+    </a>
+    <div class="menu">
+      <main>
+        <div class="reglog" style="float: right;">
+            <form action="/reg" method="post">
+              <input type="submit" value="sign in">
+            </form>
+            <form action="/log" method="post">
+              <input type="submit" value="log in">
+            </form>
+        </div>
+        <div class="inputbox">
+          <form action="/search" method="post">
+            <input required="required" type="search" name="search" id="search">
+            <span>search</span>
+            <i></i>
+          </form>
+        </div>
+        <hr>
+        {% block content %} 
+            <div class="vbn">
+                <h1>Top Films</h1><a href="/top_rated/{{response_top_films['page']}}" class="more"><button type="button" class="more">More</button></a>
+            </div>
+            <div class="row">                     
+                    {%for item in response_top_films['results']%}    
+                        <a href='/info/movie/id={{item["id"]}}'>           
+                          <img class="imgfilm" src='https://image.tmdb.org/t/p/original/{{item["poster_path"]}}' height="225" width="150"> 
+                        </a>                
+                    {% endfor %}
+            </div>
+            
+            <div class="vbn">
+              <h1>Upcoming movies</h1><a href="/upcoming" class="more"><button type="button" class="more">More</button></a>
+            </div>
+            <div class="row">                    
+                    {%for item in response_upcoming_films['results']%}    
+                      <a href='/info/movie/id={{item["id"]}}' >                
+                        <img class="imgfilm" src='https://image.tmdb.org/t/p/original/{{item["poster_path"]}}' height="225" width="150">   
+                      </a>                 
+                    {% endfor %}  
+            </div>
+            <h1>Now Playing</h1>
+            <div class="row">  
+                  {%for item in response_now_playing['results']%}   
+                    <a href='/info/movie/id={{item["id"]}}'>                  
+                      <img class="imgfilm" src='https://image.tmdb.org/t/p/original/{{item["poster_path"]}}' height="225" width="150">  
+                    </a>                    
+                  {% endfor %}                          
+            </div>
+            <div class="vbn">
+              <h1>Popular Now</h1><a href="/upcoming" class="more"><button type="button" class="more">More</button></a>
+            </div>
+            <div class="row">  
+                  {%for item in response_popular['results']%}   
+                    <a href='/info/movie/id={{item["id"]}}'>                 
+                      <img class="imgfilm" src='https://image.tmdb.org/t/p/original/{{item["poster_path"]}}' height="225" width="150">  
+                    </a>                 
+                  {% endfor %}                          
+            </div>
+        {% endblock %}
+
+      </main>
+      <hr>
+      <p class="footer"><a href="https://www.freepik.com/">Image source</a></p>
+      <p class="footer"><a href="https://developer.themoviedb.org/reference/intro/getting-started">API source</a></p>
+    
+  </div>
+  
+  </body>
+  
+</html>

@@ -1,0 +1,68 @@
+{% extends "templates/shablon.html" %}
+
+{% block content %}
+    <img class="logo"src="{{url_for('static', filename='img/popcorn.png')}}" alt="logo", width="90px" height="90px">
+        
+    <a href="/">
+        <h1 class="title">PopCornFilms</h1>
+    </a>
+    
+    <div class="menu" style="width: 60%;">
+        <hr>
+        <a href="/" class="more">
+            <button type="button" class="more">Back</button>
+        </a>
+        <div class="movinfo">
+            <img class="poster" src='https://image.tmdb.org/t/p/original/{{poster}}' height="552" width="368"> 
+            <div class="movtext">
+                <h1><strong>{{movie_title}} ({{release_date}})</strong></h1>
+                <p>{{tagline}}</p>
+                <div class="x">
+                    <p class="sx">User score: {{rating}}/100 ({{votecount}} voted)</p>
+                    <progress value={{rating}} min="0" max="100">{{rating}}</progress>
+                </div>
+                {% if budget != 0 %}
+                    <div class="x" style="margin-left: 50px;">
+                        <p class="sx">Budget:</p>
+                        <p style="color: green;">{{budget}} $</p>
+                    </div>
+                {% endif %}
+                <h3>Genres: </h3>
+                {% for item in genres%}
+                    <p class="sxx">{{item["name"]}}</p>
+                {% endfor %}
+                
+                {% if homepage != "" %}
+                    <p class="sx"><a href={{homepage}}>WEBSITE</a></p>
+                {% endif %}
+                <h3>{{movie_overview}}</h3>
+            </div>
+            
+        </div>
+            <br>
+            <h1>Cast:</h1>
+            <div class="row">
+                {% for item in response_credits["cast"] %}
+                    {% if item["profile_path"] != None %}
+                        <a href='/info/person/id={{item["id"]}}'>
+                            <img class="imgcast" src='https://image.tmdb.org/t/p/original/{{item["profile_path"]}}' height="150" width="150"> 
+                        </a>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <h1>You may also like:</h1>
+            <div class="row">
+                {% for item in similar %}
+                    {% if item.poster_path != None %}
+                    <a href='/info/movie/id={{item.id}}'>           
+                        <img class="imgfilm" src='https://image.tmdb.org/t/p/original/{{item.poster_path}}' height="225" width="150"> 
+                    </a>
+                    {% endif %}
+                {% endfor %}
+            </div>
+
+        <hr>
+        <p class="footer"><a href="https://www.freepik.com/">Image source</a></p>
+        <p class="footer"><a href="https://developer.themoviedb.org/reference/intro/getting-started">API source</a></p>
+    </div>
+{% endblock %}
